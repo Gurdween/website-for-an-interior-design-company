@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegance Interiors | Modern Interior Design Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>tailwind.config={theme:{extend:{colors:{primary:'#3b5998',secondary:'#8b9dc3'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+    <style>
+        :where([class^="ri-"])::before { content: "\f3c2"; }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #3b5998;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .portfolio-item {
+            transition: transform 0.3s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+        }
+        .form-input:focus + .form-label,
+        .form-input:not(:placeholder-shown) + .form-label {
+            transform: translateY(-20px) scale(0.85);
+            color: #3b5998;
+        }
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .form-label {
+            position: absolute;
+            left: 1rem;
+            top: 0.75rem;
+            transition: all 0.2s ease;
+            pointer-events: none;
+            color: #6b7280;
+        }
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        .form-input:focus {
+            border-color: #3b5998;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .custom-select {
+            position: relative;
+        }
+        .custom-select-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        .custom-checkbox {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+        .checkmark {
+            height: 20px;
+            width: 20px;
+            background-color: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 4px;
+            margin-right: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .custom-checkbox input:checked ~ .checkmark {
+            background-color: #3b5998;
+            border-color: #3b5998;
+        }
+        .checkmark:after {
+            content: "";
+            display: none;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-checkbox input:checked ~ .checkmark:after {
+            display: block;
+        }
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 1.5rem;
+        }
+        @media (max-width: 1024px) {
+            .masonry-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 640px) {
+            .masonry-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white bg-opacity-95 backdrop-blur-sm shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-['Pacifico'] text-primary">logo</a>
+            
+            <nav class="hidden lg:flex space-x-8">
+                <a href="#home" class="nav-link text-gray-800 hover:text-primary transition-colors">Home</a>
+                <a href="#services" class="nav-link text-gray-800 hover:text-primary transition-colors">Services</a>
+                <a href="#portfolio" class="nav-link text-gray-800 hover:text-primary transition-colors">Portfolio</a>
+                <a href="#about" class="nav-link text-gray-800 hover:text-primary transition-colors">About</a>
+                <a href="#contact" class="nav-link text-gray-800 hover:text-primary transition-colors">Contact</a>
+            </nav>
+            
+            <button class="lg:hidden w-10 h-10 flex items-center justify-center text-gray-800" id="mobile-menu-button">
+                <i class="ri-menu-line ri-lg"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="lg:hidden hidden bg-white w-full border-t" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#home" class="py-2 text-gray-800 hover:text-primary transition-colors">Home</a>
+                <a href="#services" class="py-2 text-gray-800 hover:text-primary transition-colors">Services</a>
+                <a href="#portfolio" class="py-2 text-gray-800 hover:text-primary transition-colors">Portfolio</a>
+                <a href="#about" class="py-2 text-gray-800 hover:text-primary transition-colors">About</a>
+                <a href="#contact" class="py-2 text-gray-800 hover:text-primary transition-colors">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center" style="background-image: url('https://readdy.ai/api/search-image?query=A%20luxurious%20modern%20interior%20design%20living%20room%20with%20soft%20natural%20light%20streaming%20through%20large%20windows.%20The%20space%20features%20elegant%20furniture%20with%20clean%20lines%2C%20neutral%20color%20palette%20with%20subtle%20accents%2C%20minimalist%20decor%2C%20and%20sophisticated%20architectural%20details.%20The%20image%20has%20a%20bright%2C%20airy%20feel%20with%20perfect%20balance%20of%20textures%20and%20materials.&width=1920&height=1080&seq=1&orientation=landscape'); background-size: cover; background-position: center;">
+        <div class="absolute inset-0 bg-black bg-opacity-30"></div>
+        <div class="container mx-auto px-4 py-16 relative z-10">
+            <div class="max-w-2xl">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">Transform Your Space Into a Work of Art</h1>
+                <p class="text-xl text-white mb-8">We create bespoke interior designs that reflect your personality and elevate your lifestyle.</p>
+                <a href="#portfolio" class="inline-block bg-primary text-white px-8 py-4 rounded-button font-medium hover:bg-opacity-90 transition-colors shadow-lg whitespace-nowrap">Explore Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Design Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">We offer comprehensive interior design solutions tailored to your unique style and requirements.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-6">
+                        <i class="ri-home-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Residential Design</h3>
+                    <p class="text-gray-600">Complete home transformations that balance aesthetics with functionality, creating spaces that reflect your personal style.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-6">
+                        <i class="ri-layout-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Space Planning</h3>
+                    <p class="text-gray-600">Strategic arrangement of furniture and elements to optimize flow, functionality, and spatial harmony in your home.</p>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-6">
+                        <i class="ri-palette-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Color Consultation</h3>
+                    <p class="text-gray-600">Expert guidance on color schemes that enhance mood, complement your furnishings, and create visual coherence.</p>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-6">
+                        <i class="ri-sofa-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Furniture Selection</h3>
+                    <p class="text-gray-600">Curated furniture recommendations that balance comfort, style, and durability to create cohesive living spaces.</p>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-6">
+                        <i class="ri-lightbulb-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Lighting Design</h3>
+                    <p class="text-gray-600">Strategic lighting solutions that enhance ambiance, highlight architectural features, and improve functionality.</p>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-6">
+                        <i class="ri-tools-line ri-xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Custom Solutions</h3>
+                    <p class="text-gray-600">Bespoke design elements and custom-made furniture pieces tailored to your specific needs and preferences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Portfolio</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Explore our collection of thoughtfully designed spaces that showcase our attention to detail and creative vision.</p>
+            </div>
+            
+            <!-- Portfolio Filter -->
+            <div class="flex justify-center mb-12">
+                <div class="inline-flex bg-gray-100 p-1 rounded-full">
+                    <button class="portfolio-filter-btn active px-6 py-2 rounded-full bg-primary text-white whitespace-nowrap" data-filter="all">All Projects</button>
+                    <button class="portfolio-filter-btn px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap" data-filter="living">Living Room</button>
+                    <button class="portfolio-filter-btn px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap" data-filter="kitchen">Kitchen</button>
+                    <button class="portfolio-filter-btn px-6 py-2 rounded-full text-gray-700 hover:bg-gray-200 whitespace-nowrap" data-filter="bedroom">Bedroom</button>
+                </div>
+            </div>
+            
+            <!-- Portfolio Grid -->
+            <div class="masonry-grid">
+                <!-- Item 1 -->
+                <div class="portfolio-item" data-category="living">
+                    <div class="overflow-hidden rounded-lg shadow-sm">
+                        <img src="https://readdy.ai/api/search-image?query=A%20contemporary%20living%20room%20with%20elegant%20furniture%20arrangement%2C%20featuring%20a%20comfortable%20sofa%2C%20stylish%20coffee%20table%2C%20and%20tasteful%20decor.%20The%20space%20has%20large%20windows%20allowing%20natural%20light%2C%20neutral%20color%20palette%20with%20subtle%20accent%20colors%2C%20and%20thoughtful%20lighting%20fixtures.%20The%20design%20emphasizes%20clean%20lines%2C%20balanced%20proportions%2C%20and%20a%20harmonious%20blend%20of%20textures.&width=800&height=600&seq=2&orientation=landscape" alt="Modern Living Room Design" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-lg">Contemporary Living Space</h3>
+                            <p class="text-gray-600 text-sm">Minimalist design with strategic accent pieces</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 2 -->
+                <div class="portfolio-item" data-category="kitchen">
+                    <div class="overflow-hidden rounded-lg shadow-sm">
+                        <img src="https://readdy.ai/api/search-image?query=A%20modern%20kitchen%20with%20sleek%20cabinetry%2C%20marble%20countertops%2C%20and%20high-end%20appliances.%20The%20space%20features%20a%20large%20island%20with%20seating%2C%20pendant%20lighting%2C%20and%20thoughtful%20storage%20solutions.%20The%20color%20scheme%20is%20predominantly%20white%20and%20light%20wood%20tones%20with%20subtle%20metal%20accents.%20The%20kitchen%20has%20a%20clean%2C%20uncluttered%20aesthetic%20with%20emphasis%20on%20functionality%20and%20elegant%20simplicity.&width=800&height=1000&seq=3&orientation=portrait" alt="Luxury Kitchen Design" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-lg">Gourmet Kitchen Renovation</h3>
+                            <p class="text-gray-600 text-sm">Functional elegance with premium materials</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 3 -->
+                <div class="portfolio-item" data-category="bedroom">
+                    <div class="overflow-hidden rounded-lg shadow-sm">
+                        <img src="https://readdy.ai/api/search-image?query=A%20serene%20master%20bedroom%20with%20a%20luxurious%20bed%20featuring%20plush%20bedding%20and%20decorative%20pillows.%20The%20room%20has%20elegant%20nightstands%2C%20sophisticated%20lighting%2C%20and%20a%20tasteful%20color%20palette%20of%20soft%20neutrals.%20Large%20windows%20with%20stylish%20window%20treatments%2C%20a%20comfortable%20seating%20area%2C%20and%20carefully%20selected%20artwork%20complete%20the%20tranquil%20retreat.%20The%20design%20emphasizes%20comfort%2C%20relaxation%2C%20and%20refined%20aesthetics.&width=800&height=600&seq=4&orientation=landscape" alt="Master Bedroom Design" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-lg">Tranquil Master Retreat</h3>
+                            <p class="text-gray-600 text-sm">Calming textures and balanced proportions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 4 -->
+                <div class="portfolio-item" data-category="living">
+                    <div class="overflow-hidden rounded-lg shadow-sm">
+                        <img src="https://readdy.ai/api/search-image?query=An%20open-concept%20living%20and%20dining%20area%20with%20a%20sophisticated%20design%20aesthetic.%20The%20space%20features%20a%20cohesive%20color%20scheme%2C%20architectural%20lighting%2C%20and%20a%20thoughtful%20balance%20of%20furniture%20pieces.%20Large%20windows%20frame%20scenic%20views%2C%20while%20built-in%20shelving%20displays%20curated%20decor.%20The%20design%20incorporates%20a%20mix%20of%20textures%20including%20wood%2C%20metal%2C%20and%20fabric%20elements%2C%20creating%20a%20welcoming%20yet%20elegant%20atmosphere.&width=800&height=800&seq=5&orientation=squarish" alt="Open Concept Living Design" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-lg">Open Concept Living</h3>
+                            <p class="text-gray-600 text-sm">Harmonious flow between connected spaces</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 5 -->
+                <div class="portfolio-item" data-category="kitchen">
+                    <div class="overflow-hidden rounded-lg shadow-sm">
+                        <img src="https://readdy.ai/api/search-image?query=A%20bright%2C%20airy%20kitchen%20with%20a%20farmhouse-inspired%20design%20featuring%20white%20cabinetry%2C%20a%20large%20apron%20sink%2C%20and%20natural%20wood%20accents.%20The%20space%20includes%20open%20shelving%20displaying%20artisanal%20dishware%2C%20pendant%20lighting%20over%20a%20central%20island%2C%20and%20a%20mix%20of%20traditional%20and%20contemporary%20elements.%20Large%20windows%20allow%20abundant%20natural%20light%2C%20highlighting%20the%20warm%2C%20inviting%20atmosphere%20and%20thoughtful%20design%20details.&width=800&height=600&seq=6&orientation=landscape" alt="Farmhouse Kitchen Design" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-lg">Modern Farmhouse Kitchen</h3>
+                            <p class="text-gray-600 text-sm">Rustic elements with contemporary functionality</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Item 6 -->
+                <div class="portfolio-item" data-category="bedroom">
+                    <div class="overflow-hidden rounded-lg shadow-sm">
+                        <img src="https://readdy.ai/api/search-image?query=A%20sophisticated%20guest%20bedroom%20with%20a%20luxurious%20yet%20welcoming%20atmosphere.%20The%20room%20features%20a%20beautifully%20styled%20bed%20with%20high-quality%20linens%2C%20elegant%20nightstands%20with%20tasteful%20lamps%2C%20and%20thoughtfully%20selected%20artwork.%20The%20color%20palette%20is%20soothing%20with%20subtle%20pattern%20integration%2C%20and%20the%20furniture%20arrangement%20maximizes%20space%20while%20maintaining%20an%20open%2C%20airy%20feel.%20Window%20treatments%20provide%20privacy%20while%20complementing%20the%20overall%20design%20aesthetic.&width=800&height=1000&seq=7&orientation=portrait" alt="Guest Bedroom Design" class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105">
+                        <div class="p-4 bg-white">
+                            <h3 class="font-bold text-lg">Elegant Guest Suite</h3>
+                            <p class="text-gray-600 text-sm">Luxurious comfort with thoughtful details</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://readdy.ai/api/search-image?query=A%20professional%20interior%20design%20team%20collaborating%20in%20a%20stylish%20studio%20space.%20The%20environment%20features%20design%20samples%2C%20material%20swatches%2C%20and%20architectural%20plans.%20Team%20members%20are%20engaged%20in%20discussion%20around%20a%20large%20worktable%20with%20various%20design%20elements.%20The%20studio%20has%20an%20elegant%2C%20creative%20atmosphere%20with%20natural%20light%2C%20organized%20workstations%2C%20and%20inspiring%20design%20elements%20throughout%20the%20space.&width=800&height=600&seq=8&orientation=landscape" alt="Our Design Team" class="w-full h-auto rounded-lg shadow-md">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">About Our Studio</h2>
+                    <p class="text-gray-600 mb-6">Founded in 2015, Elegance Interiors has established itself as a premier interior design studio specializing in creating sophisticated, functional spaces that reflect our clients' unique personalities and lifestyles.</p>
+                    <p class="text-gray-600 mb-6">Our team of experienced designers brings diverse expertise in spatial planning, color theory, material selection, and custom furnishings to every project. We believe that exceptional design should be accessible and that every space has the potential to be both beautiful and practical.</p>
+                    <p class="text-gray-600 mb-8">Our collaborative approach ensures that we understand your vision, preferences, and requirements before developing tailored design solutions that exceed expectations.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4">
+                                <i class="ri-award-line ri-lg text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">15+</h4>
+                                <p class="text-gray-600 text-sm">Design Awards</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4">
+                                <i class="ri-home-heart-line ri-lg text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">200+</h4>
+                                <p class="text-gray-600 text-sm">Projects Completed</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4">
+                                <i class="ri-user-smile-line ri-lg text-primary"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">180+</h4>
+                                <p class="text-gray-600 text-sm">Happy Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Ready to transform your space? Contact us to schedule a consultation and discuss your design vision.</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="flex flex-col md:flex-row gap-12">
+                    <div class="md:w-1/3">
+                        <div class="mb-8">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+                                <i class="ri-map-pin-line ri-lg text-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Visit Us</h3>
+                            <p class="text-gray-600">123 Design Avenue, Suite 500<br>New York, NY 10001</p>
+                        </div>
+                        
+                        <div class="mb-8">
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+                                <i class="ri-mail-line ri-lg text-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Email Us</h3>
+                            <p class="text-gray-600">info@eleganceinteriors.com<br>projects@eleganceinteriors.com</p>
+                        </div>
+                        
+                        <div>
+                            <div class="w-12 h-12 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mb-4">
+                                <i class="ri-phone-line ri-lg text-primary"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Call Us</h3>
+                            <p class="text-gray-600">(212) 555-7890<br>(212) 555-7891</p>
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-2/3">
+                        <form id="contact-form" class="bg-white p-8 rounded-lg shadow-sm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="form-group">
+                                    <input type="text" id="name" class="form-input" placeholder=" " required>
+                                    <label for="name" class="form-label">Full Name</label>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="email" id="email" class="form-input" placeholder=" " required>
+                                    <label for="email" class="form-label">Email Address</label>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="form-group">
+                                    <input type="tel" id="phone" class="form-input" placeholder=" ">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                </div>
+                                
+                                <div class="form-group custom-select">
+                                    <select id="project-type" class="form-input pr-10">
+                                        <option value="" disabled selected>Select Project Type</option>
+                                        <option value="residential">Residential Design</option>
+                                        <option value="space-planning">Space Planning</option>
+                                        <option value="color-consultation">Color Consultation</option>
+                                        <option value="furniture">Furniture Selection</option>
+                                        <option value="lighting">Lighting Design</option>
+                                        <option value="custom">Custom Solution</option>
+                                    </select>
+                                    <div class="custom-select-icon">
+                                        <i class="ri-arrow-down-s-line"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-6">
+                                <textarea id="message" class="form-input h-32" placeholder=" " required></textarea>
+                                <label for="message" class="form-label">Your Message</label>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="custom-checkbox">
+                                    <input type="checkbox" required>
+                                    <span class="checkmark"></span>
+                                    <span class="text-gray-600 text-sm">I agree to the <a href="#" class="text-primary">Privacy Policy</a> and <a href="#" class="text-primary">Terms of Service</a></span>
+                                </label>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-white py-4 px-6 rounded-button font-medium hover:bg-opacity-90 transition-colors shadow-sm whitespace-nowrap">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div>
+                    <a href="#" class="text-3xl font-['Pacifico'] text-white mb-6 block">logo</a>
+                    <p class="text-gray-400 mb-6">Creating beautiful, functional spaces that inspire and delight. Our passion is transforming houses into homes that reflect your unique style.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-instagram-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-facebook-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-pinterest-line"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full hover:bg-primary transition-colors">
+                            <i class="ri-linkedin-line"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition-colors">Services</a></li>
+                        <li><a href="#portfolio" class="text-gray-400 hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Residential Design</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Space Planning</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Color Consultation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Furniture Selection</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Lighting Design</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to our newsletter for design tips and inspiration.</p>
+                    <form class="mb-4">
+                        <div class="flex">
+                            <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-l-button border-none focus:outline-none text-gray-800">
+                            <button type="submit" class="bg-primary px-4 py-3 rounded-r-button whitespace-nowrap">Subscribe</button>
+                        </div>
+                    </form>
+                    <p class="text-gray-400 text-sm">By subscribing, you agree to our Privacy Policy.</p>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Elegance Interiors. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookies Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script id="navigation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+                
+                // Toggle icon between menu and close
+                const icon = mobileMenuButton.querySelector('i');
+                if (icon.classList.contains('ri-menu-line')) {
+                    icon.classList.remove('ri-menu-line');
+                    icon.classList.add('ri-close-line');
+                } else {
+                    icon.classList.remove('ri-close-line');
+                    icon.classList.add('ri-menu-line');
+                }
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                    const icon = mobileMenuButton.querySelector('i');
+                    icon.classList.remove('ri-close-line');
+                    icon.classList.add('ri-menu-line');
+                });
+            });
+            
+            // Active link highlighting
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            window.addEventListener('scroll', function() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (scrollY >= (sectionTop - 200)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script id="portfolio-filter-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+            const portfolioItems = document.querySelectorAll('.portfolio-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active', 'bg-primary', 'text-white');
+                        btn.classList.add('text-gray-700', 'hover:bg-gray-200');
+                    });
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active', 'bg-primary', 'text-white');
+                    this.classList.remove('text-gray-700', 'hover:bg-gray-200');
+                    
+                    const filter = this.getAttribute('data-filter');
+                    
+                    // Show/hide portfolio items based on filter
+                    portfolioItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+    <script id="form-validation-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Simple form validation
+                let isValid = true;
+                const requiredFields = contactForm.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('border-red-500');
+                    } else {
+                        field.classList.remove('border-red-500');
+                    }
+                });
+                
+                // Email validation
+                const emailField = document.getElementById('email');
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (emailField.value && !emailPattern.test(emailField.value)) {
+                    isValid = false;
+                    emailField.classList.add('border-red-500');
+                }
+                
+                if (isValid) {
+                    // Form submission logic would go here
+                    alert('Thank you for your message! We will contact you soon.');
+                    contactForm.reset();
+                } else {
+                    alert('Please fill in all required fields correctly.');
+                }
+            });
+            
+            // Remove error styling on input
+            const formInputs = contactForm.querySelectorAll('.form-input');
+            formInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    this.classList.remove('border-red-500');
+                });
+            });
+        });
+    </script>
+
+    <script id="scroll-behavior-script">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 80; // Adjust based on your header height
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
